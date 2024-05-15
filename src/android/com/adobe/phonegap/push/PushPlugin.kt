@@ -441,7 +441,7 @@ class PushPlugin : CordovaPlugin() {
     pushContext = callbackContext
     pluginInitData = data;
 
-    var hasPermission = checkForPostNotificationsPermission()
+    var hasPermission = true
     if (!hasPermission)
       return
 
