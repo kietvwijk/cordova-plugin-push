@@ -1,6 +1,6 @@
 {
   "name": "@kietvanwijk/cordova-plugin-push",
-  "version": "5.0.5",
+  "version": "5.0.5-kiet1",
   "description": "Register and receive push notifications.",
   "scripts": {
     "build": "babel src/js --out-dir www",
