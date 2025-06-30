@@ -18,7 +18,7 @@
     "cordova-android",
     "cordova-browser"
   ],
-  "author": "Erisu",
+  "author": "HaveSource",
   "license": "MIT",
   "bugs": "https://github.com/havesource/cordova-plugin-push/issues",
   "homepage": "https://github.com/havesource/cordova-plugin-push#readme",
