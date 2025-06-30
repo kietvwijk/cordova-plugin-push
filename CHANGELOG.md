@@ -1,5 +1,9 @@
 # Change Log
 
+## 6.0.1
+
+Forgot to update the version in `plugin.xml`.
+
 ## 6.0.0
 
 **Security Release Notes:**
