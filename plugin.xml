@@ -30,11 +30,16 @@
       <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
       <uses-permission android:name="android.permission.WAKE_LOCK"/>
       <uses-permission android:name="android.permission.VIBRATE"/>
+
+      <uses-permission android:name="${applicationId}.permission.PushHandlerActivity"/>
+      <permission android:name="${applicationId}.permission.PushHandlerActivity" android:protectionLevel="signature"></permission>
+      <uses-permission android:name="${applicationId}.permission.BackgroundHandlerActivity"/>
+      <permission android:name="${applicationId}.permission.BackgroundHandlerActivity" android:protectionLevel="signature"></permission>
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity android:name="com.adobe.phonegap.push.PushHandlerActivity" android:exported="true" android:permission="${applicationId}.permission.PushHandlerActivity"/>
-      <activity android:name="com.adobe.phonegap.push.BackgroundHandlerActivity" android:exported="true" android:permission="${applicationId}.permission.BackgroundHandlerActivity">
+      <activity android:name="com.adobe.phonegap.push.PushHandlerActivity" android:exported="false" android:permission="${applicationId}.permission.PushHandlerActivity"/>
+      <activity android:name="com.adobe.phonegap.push.BackgroundHandlerActivity" android:exported="false" android:permission="${applicationId}.permission.BackgroundHandlerActivity">
         <intent-filter>
           <action android:name="com.adobe.phonegap.push.background.MESSAGING_EVENT"/>
           <category android:name="android.intent.category.DEFAULT" />
@@ -44,13 +49,13 @@
       <receiver android:name="com.adobe.phonegap.push.BackgroundActionButtonHandler"/>
       <receiver android:name="com.adobe.phonegap.push.PushDismissedHandler"/>
 
-      <service android:name="com.adobe.phonegap.push.FCMService">
+      <service android:name="com.adobe.phonegap.push.FCMService" android:exported="false">
         <intent-filter>
           <action android:name="com.google.firebase.MESSAGING_EVENT"/>
         </intent-filter>
       </service>
 
-      <service android:name="com.adobe.phonegap.push.PushInstanceIDListenerService">
+      <service android:name="com.adobe.phonegap.push.PushInstanceIDListenerService" android:exported="false">
         <intent-filter>
           <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
         </intent-filter>
