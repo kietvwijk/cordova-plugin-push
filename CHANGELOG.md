@@ -27,6 +27,23 @@
 - dep(npm): bump all devDependencies (#241)
 - ci: bump github action workflow and dependencies (#242)
 
+## 3.0.2
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+* `com.adobe.phonegap.push.PushInstanceIDListenerService` (Service)
+
+We also added the `<uses-permission>` and `<permission>` declarations for **PushHandlerActivity** and **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android): set exported to false & add missing permissions w/ protectionLevel signature
+
 ## 3.0.1
 
 **Fixes:**
@@ -108,6 +125,23 @@ In this major release, there are many breaking changes to the Android platform. 
 
 * doc: fixed minor typo (#98)
 
+## 2.0.1
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+* `com.adobe.phonegap.push.PushInstanceIDListenerService` (Service)
+
+We also added the `<uses-permission>` and `<permission>` declarations for **PushHandlerActivity** and **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android): set exported to false & add missing permissions w/ protectionLevel signature
+
 ## 2.0.0
 
 **Overview:**
@@ -145,6 +179,22 @@ There is also an update to the installation requirements:
 
 * ci(gh-actions): bump dependencies [#78](https://github.com/havesource/cordova-plugin-push/pull/78)
 
+## 1.0.1
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+* `com.adobe.phonegap.push.PushInstanceIDListenerService` (Service)
+
+We also added the `<uses-permission>` and `<permission>` declarations for **PushHandlerActivity** and **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android): set exported to false & add missing permissions w/ protectionLevel signature
 
 ## 1.0.0
 
