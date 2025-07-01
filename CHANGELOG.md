@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.1
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+
+We also added the `<uses-permission>` and `<permission>` declarations for **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android): set exported to false & add missing permissions w/ protectionLevel signature
+
 ## 4.0.0
 
 **Breaking:**
