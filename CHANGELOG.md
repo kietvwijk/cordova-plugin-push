@@ -1,5 +1,46 @@
 # Change Log
 
+## 6.0.1
+
+Forgot to update the version in `plugin.xml`.
+
+## 6.0.0
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+
+Although **PushHandlerActivity** had already defined `android:permission` with a `protectionLevel` of `signature`, **BackgroundHandlerActivity** — which was originally a copy of `PushHandlerActivity` with minor changes — had inadvertently omitted this permission configuration.
+
+We have now correctly added both the `<uses-permission>` and `<permission>` declarations to **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android)!: set exported to false (#353) #87
+- fix(android): add BackgroundHandlerActivity protectionLevel signature (#261)
+
+**Breaking Changes:**
+
+- feat(android)!: remove some version overrides (#351)
+    Rely on the Cordova-Android platform defaults for
+      - Google Services (GradlePluginGoogleServicesVersion)
+      - Kotlin (GradlePluginKotlinVersion)
+    App developers can still override the version in config.xml if needed.
+- fix(android)!: notification audio not to be controlled by ringtone (#352)
+
+**Features:**
+
+- feat(ios): add forceRegister option (#337)
+
+**Fixes:**
+
+- fix(android): replace initialize with pluginInitialize (#347)
+- fix(android): catch all Firebase exceptions (#341)
+
 ## 5.0.5
 
 **Fixes:**

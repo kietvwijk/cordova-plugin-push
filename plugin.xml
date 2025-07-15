@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  id="@kietvanwijk/cordova-plugin-push" version="5.0.5-kiet2">
+  id="@kietvanwijk/cordova-plugin-push" version="6.0.1-kiet1">
 
   <name>Cordova Push Plugin</name>
   <description>Enable receiving push notifications on Android and iOS devices. Android uses Firebase Cloud Messaging. iOS uses Apple APNS Notifications.</description>
@@ -33,11 +33,13 @@
       <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
       <uses-permission android:name="${applicationId}.permission.PushHandlerActivity"/>
       <permission android:name="${applicationId}.permission.PushHandlerActivity" android:protectionLevel="signature"></permission>
+      <uses-permission android:name="${applicationId}.permission.BackgroundHandlerActivity"/>
+      <permission android:name="${applicationId}.permission.BackgroundHandlerActivity" android:protectionLevel="signature"></permission>
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity android:name="com.adobe.phonegap.push.PushHandlerActivity" android:exported="true" android:permission="${applicationId}.permission.PushHandlerActivity"/>
-      <activity android:name="com.adobe.phonegap.push.BackgroundHandlerActivity" android:exported="true" android:permission="${applicationId}.permission.BackgroundHandlerActivity">
+      <activity android:name="com.adobe.phonegap.push.PushHandlerActivity" android:exported="false" android:permission="${applicationId}.permission.PushHandlerActivity"/>
+      <activity android:name="com.adobe.phonegap.push.BackgroundHandlerActivity" android:exported="false" android:permission="${applicationId}.permission.BackgroundHandlerActivity">
         <intent-filter>
           <action android:name="com.adobe.phonegap.push.background.MESSAGING_EVENT"/>
           <category android:name="android.intent.category.DEFAULT" />
@@ -47,7 +49,7 @@
       <receiver android:name="com.adobe.phonegap.push.BackgroundActionButtonHandler"/>
       <receiver android:name="com.adobe.phonegap.push.PushDismissedHandler"/>
 
-      <service android:name="com.adobe.phonegap.push.FCMService" android:exported="true">
+      <service android:name="com.adobe.phonegap.push.FCMService" android:exported="false">
         <intent-filter>
           <action android:name="com.google.firebase.MESSAGING_EVENT"/>
         </intent-filter>
@@ -57,10 +59,7 @@
     <config-file target="config.xml" parent="/*">
       <preference name="AndroidXEnabled" value="true" />
       <preference name="GradlePluginGoogleServicesEnabled" value="true" />
-      <preference name="GradlePluginGoogleServicesVersion" value="4.3.15" />
-
       <preference name="GradlePluginKotlinEnabled" value="true" />
-      <preference name="GradlePluginKotlinVersion" value="1.7.21" />
     </config-file>
 
     <preference name="ANDROIDX_CORE_VERSION" default="1.6.+"/>
