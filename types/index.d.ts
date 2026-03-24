@@ -146,7 +146,7 @@ declare namespace PhonegapPluginPush {
 			 */
 			vibrate?: boolean
 			/**
-			 * If true the icon badge will be cleared on init and before push messages are processed. Default is false.
+			 * If true the icon badge and notifications will be cleared on init and before push messages are processed. Default is false.
 			 */
 			clearBadge?: boolean
 			/**
@@ -244,6 +244,12 @@ declare namespace PhonegapPluginPush {
 			 * If true will always show a notification, even when the app is on the foreground. Default is false.
 			 */
 			forceShow?: boolean
+      /**
+			 * If true the app will register for remote notifications, even if the user has denied notification permissions.
+			 * On iOS, notification permissions only control user-facing notifications – background pushes can still be received.
+			 * Default is false.
+			 */
+			forceRegister?: boolean
 		}
 	}
 

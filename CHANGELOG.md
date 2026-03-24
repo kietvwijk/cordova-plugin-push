@@ -1,5 +1,86 @@
 # Change Log
 
+## 7.0.0
+
+**Breaking Changes:**
+
+- feat(android)!: bump library versions (#355)
+  - `androidx.core:core:1.16.0`
+  - `com.google.firebase:firebase-messaging:24.1.0`
+- feat(ios)!: bump pod `Firebase/Messaging@11.8.0` (#356)
+
+  **Note:** If you are using the Cordova-iOS platform version 7.x or lower, the `deployment-target` config preference must be set to at least `13.0` to work with [`Firebase/Messaging@11.8.0`](https://github.com/CocoaPods/Specs/blob/master/Specs/2/d/6/FirebaseMessaging/11.8.0/FirebaseMessaging.podspec.json#L19).
+
+  Example `config.xml`:
+
+  ```xml
+  <platform name="ios">
+    <preference name="deployment-target" value="13.0" />
+  </platform>
+  ```
+
+- fix(android)!: also clear notifications when `clearBadge` is `true` (#358)
+
+  This fix ensures that notifications in the message center are also cleared when the clearBadge flag is set to true.
+
+  Previously, the flag was only documented to clear the badge counter (or dots, in Android’s case). However, it was not possible to clear only the badge on Android. The badge counter/dot is not fully independent of notifications—attempting to clear the badge may fail if the associated notification is not also cleared. The behavior can also vary depending on the Android version or device.
+
+  Additionally, there was an inconsistency between iOS and Android: iOS cleared both the badge and the notification, while Android attempted to clear only the badge.
+
+  This update aligns the behavior across platforms, making it more consistent.
+
+- chore!: update dependencies (#360)
+
+  While this commit is marked as a breaking change, it primarily affects plugin development, as it increases the required Node.js engine version. This should not impact plugin usage directly, but it is still recommended to use the latest supported [Node.js release](https://nodejs.org/en/about/previous-releases), preferably the Long-Term Support (LTS) release.
+
+**Chores, CI, & Docs:**
+
+- chore: update `package-lock.json` (#361)
+- chore: move token higher and cleanup exception block (#359)
+- ci: update workflow (#362)
+- doc: clean & update
+
+## 6.0.1
+
+Forgot to update the version in `plugin.xml`.
+
+## 6.0.0
+
+**Security Release Notes:**
+
+To strengthen application security, we have updated the `android:exported` flag for all relevant activities and services to `false`.
+
+Affected components:
+
+* `PushHandlerActivity` (Activity)
+* `BackgroundHandlerActivity` (Activity)
+* `com.adobe.phonegap.push.FCMService` (Service)
+
+Although **PushHandlerActivity** had already defined `android:permission` with a `protectionLevel` of `signature`, **BackgroundHandlerActivity** — which was originally a copy of `PushHandlerActivity` with minor changes — had inadvertently omitted this permission configuration.
+
+We have now correctly added both the `<uses-permission>` and `<permission>` declarations to **BackgroundHandlerActivity** with `android:protectionLevel="signature"`. While these permissions are likely redundant given that all components are no longer exported, it will be an added safe-guard.
+
+- fix(android)!: set exported to false (#353) #87
+- fix(android): add BackgroundHandlerActivity protectionLevel signature (#261)
+
+**Breaking Changes:**
+
+- feat(android)!: remove some version overrides (#351)
+    Rely on the Cordova-Android platform defaults for
+      - Google Services (GradlePluginGoogleServicesVersion)
+      - Kotlin (GradlePluginKotlinVersion)
+    App developers can still override the version in config.xml if needed.
+- fix(android)!: notification audio not to be controlled by ringtone (#352)
+
+**Features:**
+
+- feat(ios): add forceRegister option (#337)
+
+**Fixes:**
+
+- fix(android): replace initialize with pluginInitialize (#347)
+- fix(android): catch all Firebase exceptions (#341)
+
 ## 5.0.5
 
 **Fixes:**
