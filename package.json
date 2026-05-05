@@ -1,6 +1,6 @@
 {
   "name": "@kietvanwijk/cordova-plugin-push",
-  "version": "7.0.0-kiet1",
+  "version": "7.0.0",
   "description": "Register and receive push notifications.",
   "scripts": {
     "build": "babel src/js --out-dir www",
@@ -11,7 +11,10 @@
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "test": "npm run build && npm run lint && npm run jasmine"
   },
-  "repository": "github:kietvwijk/cordova-plugin-push",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kietvwijk/cordova-plugin-push.git"
+  },
   "keywords": [
     "ecosystem:cordova",
     "cordova-ios",
